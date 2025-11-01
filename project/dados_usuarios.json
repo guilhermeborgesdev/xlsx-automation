@@ -1,0 +1,90 @@
+{
+    "usuario_atual": {
+        "id": "admin",
+        "nome": "admin",
+        "role": "admin"
+    },
+    "usuarios": {
+        "admin": {
+            "senha": "admin123",
+            "nivel": "admin",
+            "historico": [
+                {
+                    "acao": "Login",
+                    "data": ""
+                },
+                {
+                    "acao": "Login",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha DHY9H51.csv com c\u00f3digo da empresa 1",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha QHU1016.csv com c\u00f3digo da empresa 1",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha MLS2428.csv com c\u00f3digo da empresa 1",
+                    "data": ""
+                },
+                {
+                    "acao": "Login",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha DHY9H51.csv",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha QHU1016.csv",
+                    "data": ""
+                },
+                {
+                    "acao": "Editou a planilha MLS2428.csv",
+                    "data": ""
+                }
+            ]
+        }
+    },
+    "planilhas_editadas": [
+        {
+            "data": "2025-11-01T00:20:27.672197",
+            "usuario": "admin",
+            "planilha": "DHY9H51.csv"
+        },
+        {
+            "data": "2025-11-01T00:20:29.165508",
+            "usuario": "admin",
+            "planilha": "QHU1016.csv"
+        },
+        {
+            "data": "2025-11-01T00:20:29.855070",
+            "usuario": "admin",
+            "planilha": "MLS2428.csv"
+        },
+        {
+            "data": "2025-11-01T00:22:14.012183",
+            "usuario": "admin",
+            "planilha": "DHY9H51.csv"
+        },
+        {
+            "data": "2025-11-01T00:22:17.612510",
+            "usuario": "admin",
+            "planilha": "QHU1016.csv"
+        },
+        {
+            "data": "2025-11-01T00:22:19.232135",
+            "usuario": "admin",
+            "planilha": "MLS2428.csv"
+        }
+    ],
+    "historico_downloads": [
+        {
+            "data": "2025-11-01T00:22:23.512810",
+            "usuario": "admin",
+            "planilha": "DHY9H51.csv"
+        }
+    ]
+}
