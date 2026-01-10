@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar</title>
+    <link rel="stylesheet" href="style/app.css">
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css">    
+</head>
+<body class="auth-page">
+    <div id="caixa">
+        <section id="login">
+            <h1>Entrar</h1>
+            <label id="login_label" for="login_input">Login:</label>
+                <input type="text" id="login_input" placeholder="Login">
+
+            <label for="pass_input" id="pass_label">Senha:</label>
+                <input type="password" id="pass_input" placeholder="Senha" >
+        </section>
+        <button id="btn_entrar" class="btn btn-primary">Entrar</button>
+
+        <a href="views/redefine_account.html" id="redefinir_senha">Redefinir Senha</a>
+    </div>
+<script src="scripts/index.js"></script>
+<script src="scripts/redefine_account.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</body>
+</html>

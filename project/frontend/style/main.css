@@ -1,0 +1,34 @@
+#main_principal {
+    gap: 16px;
+}
+
+#main_principal h2 {
+    font-size: 22px;
+}
+
+#uploads {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#upload_label {
+    font-weight: 600;
+    color: var(--text);
+}
+
+#uploads p {
+    color: var(--muted);
+}
+
+#processar_label {
+    color: var(--muted);
+}
+
+#botao {
+    align-self: flex-start;
+}
+
+#preview_planilhas {
+    height: 420px;
+}
