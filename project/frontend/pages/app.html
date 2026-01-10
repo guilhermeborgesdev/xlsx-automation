@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css">
+    <link rel="stylesheet" href="../style/app.css">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/dashboards.css">
+    <link rel="stylesheet" href="../style/user.css">
+    <title>App</title>
+</head>
+<body class="app-page">
+<section id="dados_login">
+    <dl>
+        <dt>Usuario</dt>
+            <dd id="loginUsuario"></dd>
+
+        <dt>Permissao</dt>
+            <dd id="permissaoUsuario"></dd>
+    </dl>
+</section>
+<nav id="menu">
+    <div id="menu_views">
+        <a id="inicio" data-view="main" href="app.html?view=main">Inicio</a>
+        <a id="dashboards" data-view="dashboards" href="app.html?view=dashboards">Dashboards</a>
+        <a id="user" data-view="user" href="app.html?view=user">Usuarios</a>
+    </div>
+</nav>
+<div id="page_content"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="../scripts/layout.js"></script>
+</body>
+</html>

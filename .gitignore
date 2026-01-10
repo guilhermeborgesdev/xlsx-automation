@@ -205,3 +205,68 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Arquivos de ambiente e sensíveis
+.env
+.venv
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+pip-log.txt
+pip-delete-this-commit.txt
+.tox/
+.coverage
+.mypy_cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+htmlcov/
+.nox/
+
+# Node.js / JavaScript
+node_modules/
+/dist
+/build
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+.next/ # Para projetos Next.js
+.nuxt/ # Para projetos Nuxt.js
+.cache/ # Para projetos Gatsby
+.parcel-cache
+.node_repl_history
+
+# IDEs e Sistema Operacional
+.DS_Store # macOS
+.idea/ # JetBrains IDEs (PyCharm, WebStorm, etc.)
+.vscode/ # VS Code (opcional, se não quiser compartilhar configurações de equipe)
+Thumbs.db # Windows
+
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Dados locais
+*.csv
