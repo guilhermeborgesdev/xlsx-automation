@@ -1,3 +1,5 @@
+import * as sessao from "./session.js";
+
 const views = {
     main: {
         title: "Inicio",
@@ -18,6 +20,19 @@ const views = {
         module: true,
     },
 };
+
+//adiciona o nome do usuario e permissao
+const dados_usuarios = sessao.getSessaoUsuario();
+const nome_usuario = dados_usuarios.nome
+document.getElementById('loginUsuario').innerHTML = nome_usuario
+
+const permissao = dados_usuarios.permissao ;
+permissao == 'A' ? document.getElementById('permissaoUsuario').innerHTML = 'Administrador' : document.getElementById('permissaoUsuario').innerHTML = 'Padrão';
+if (permissao !== 'A') { 
+    document.getElementById('dashboards').style.display = 'none'
+    document.getElementById('user').style.display = 'none'
+}
+
 
 function getViewKey() {
     const params = new URLSearchParams(window.location.search);
