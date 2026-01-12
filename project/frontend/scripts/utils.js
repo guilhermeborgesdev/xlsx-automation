@@ -1,14 +1,19 @@
-import * as functionsApi from "./api.js" 
+import * as functionsApi from "./api.js"
 
+export function abrirModal(elemento) {
+    const tela = document.getElementById(elemento);
+    tela.classList.remove("hidden");
+}
 
-export async function buscaDadosUsuarioLogado(codigo_usuario){
-    const response = functionsApi.getUsusario(codigo_usuario) //chamando a api que pega os dados pelo id do usuario 
-    const permissao = response.PERMISSAO ;
-    permissao == 'A' ? document.getElementById('permissaoUsuario').innerHTML = 'Administrador' : document.getElementById('permissaoUsuario').innerHTML = 'Padrão';
-    if (permissao !== 'A') { 
-        document.getElementById('dashboards').style.display = 'none'
-        document.getElementById('user').style.display = 'none'
-    }
+export async function abrirModalFormulario(elemento, formulario) {
+    const formulario_elemento = document.getElementById(formulario) 
+    formulario_elemento.reset();
 
-    return response;
-};
+    const tela = document.getElementById(elemento);
+    tela.classList.remove("hidden");
+}
+
+export function fecharModal(elemento) {
+    const tela = document.getElementById(elemento)
+    tela.classList.add("hidden");
+}
