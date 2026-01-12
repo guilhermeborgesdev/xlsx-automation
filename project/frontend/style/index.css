@@ -5,6 +5,17 @@ body.auth-page {
         var(--bg-accent);
 }
 
+#mensagem {
+    color: #D8000C; /* Cor do texto vermelho */
+    background-color: #FFBABA; /* Fundo claro vermelho */
+    border: 1px solid #D8000C; /* Borda */
+    padding: 10px 15px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Margem inferior */
+    border-radius: 4px; /* Cantos arredondados */
+    display: none; /* Esconder por padrão */
+    /* Outros estilos, como font-weight: bold; */
+}
+
 #caixa {
     width: min(460px, 92vw);
     background: var(--surface);
