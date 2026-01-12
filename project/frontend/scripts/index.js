@@ -15,7 +15,7 @@ document.getElementById("btn_entrar").addEventListener("click", async function()
 function getDadosLogin () {
     const login = document.getElementById("login_input").value;
     const password = document.getElementById("password_input").value;
-    const hash_login = api.hashLogin(login, password)
+    //const hash_login = api.hashLogin(login, password)
     const dados = { login: hash_login.LOGIN, password: hash_login.PASSWORD }
 
     if(!validarDadosLogin(dados)) {return null}
