@@ -6,15 +6,15 @@ const router = Router();
 
 router.post("/", async (req, res, next) => {
     try {
-        const autenticate = await auth(req.body.login, req.body.password);
-        if (autenticate.length === 0) {
-            return res.status(401).json({ error: "Login ou senha inválidos" });
+        const user = await auth(req.body.login, req.body.password);
+        if (user.length === 0) {
+            return res.status(400).json({ error: "Login ou senha inválidos" });
         }
-        res.json({ autenticate: autenticate[0] });
+        res.json({ user: user[0] });
 
     } catch (error) {
         next(error)
     };
 })
 
-export default router;
+export default router;  

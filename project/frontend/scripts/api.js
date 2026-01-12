@@ -28,7 +28,6 @@ export async function login(dados) {
 }
 
 export async function getUsuarios(){
-    const url = `${API_BASE}/api/users`
     const response = await fetch (`${API_BASE}/api/users`, {
         method: "GET",
         headers: headers,
