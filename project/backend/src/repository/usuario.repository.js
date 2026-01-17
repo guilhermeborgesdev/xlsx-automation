@@ -6,10 +6,10 @@ export async function getUsuarios() {
 
     const result = await db.request().query(
         `select top 15  
-        US_CODIGO,
-        US_NOME,
-        US_LOGIN,
-        US_PERMISSAO
+        US_CODIGO as CODIGO,
+        US_NOME as NOME,
+        US_LOGIN as LOGIN,
+        US_PERMISSAO as PERMISSAO
         from US_USUARIOS
         order by US_NOME`
     );
@@ -29,7 +29,7 @@ export async function getUsusario(codigo) {
         US_CODIGO = @codigo`
     );
 
-    return result.recordset[0];
+    return result.recordset;
 }
 
 export async function updtUsusario(codigo, dados_usuario){
