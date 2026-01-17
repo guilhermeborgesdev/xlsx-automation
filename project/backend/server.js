@@ -10,6 +10,7 @@ import cors from "cors";
 await connectDB();
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: ["http://0.0.0.0:5500", "http://localhost:5500"],

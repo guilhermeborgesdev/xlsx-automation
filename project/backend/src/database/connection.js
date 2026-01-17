@@ -1,11 +1,11 @@
 import sql from "mssql";
 
 const config = {
-  user: process.env.DB_USER || "sa",
-  password: process.env.DB_PASSWORD || "7053#Gui",
-  server: process.env.DB_SERVER || "localhost",
-  port: Number(process.env.DB_PORT || 1433),
-  database: process.env.DB_DATABASE || "AUTOMATIZATION-XLSX",
+  user: "sa",
+  password: "7053#Gui",
+  server:"localhost",
+  port: 1433,
+  database: "AUTOMACAO-PLANILHAS",
   options: {
     encrypt: true,
     trustServerCertificate: true,
@@ -23,7 +23,6 @@ export async function connectDB() {
     const pool = await sql.connect(config);
     return pool;
   } catch (err) {
-    // log útil e objetivo
     console.error("DB connect error:", {
       code: err?.code,
       message: err?.message,
