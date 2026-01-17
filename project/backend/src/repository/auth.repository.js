@@ -9,6 +9,7 @@ export async function auth(login, password) {
     input("password", sql.VarChar(32), password).
     query(
         `select
+        US_CODIGO,
         US_NOME,
         US_LOGIN,
         US_PERMISSAO
