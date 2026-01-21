@@ -5,7 +5,6 @@
         const db = await connectDB ();
 
         const result = await db.request().query(
-            `select * from HP_HISTORICO_PLANILHAS`
         )
 
         return result.recordset;

@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000"; // a porta do seu Express
+const API_BASE = "http://localhost:3000"; // a porta do Express
 const headers = { "Content-Type": "application/json" }
 
 async function parseResponse(response) {
@@ -11,12 +11,13 @@ async function parseResponse(response) {
     }
 
     if (!response.ok) {
-        throw new Error(result?.error || `Erro HTTP ${response.status}`);
+        throw new Error(result?.error || `Erro HTTP ${response.status}`);   
     }
 
     return result;
 }
 
+// API login usuario
 export async function login(dados) {
     const response = await fetch(`${API_BASE}/api/auth`, {
         method: "POST",
@@ -27,6 +28,8 @@ export async function login(dados) {
     return parseResponse(response);
 }
 
+
+// APIS pra pegar dados dos usuários
 export async function getUsuarios(){
     const response = await fetch (`${API_BASE}/api/users`, {
         method: "GET",
@@ -36,6 +39,7 @@ export async function getUsuarios(){
     return parseResponse(response);
 }
 
+//Pega o historico de todos os usuarios
 export async function getHistorico(){
     const response = await fetch (`${API_BASE}/api/history`, {
         method: "GET",
@@ -45,6 +49,7 @@ export async function getHistorico(){
     return parseResponse(response);
 }
 
+// pega o historico de usuarios especificos
 export async function getHistoricoUsuario(idUser){
     const response = await fetch (`${API_BASE}/api/history/${idUser}`, {
         method: "GET",
@@ -54,6 +59,7 @@ export async function getHistoricoUsuario(idUser){
     return parseResponse(response);
 }
 
+// Pega dados de um usuario especifico
 export async function getUsusario(idUser){
     const response = await fetch (`${API_BASE}/api/users/${idUser}`, {
         method: "GET",
@@ -63,6 +69,18 @@ export async function getUsusario(idUser){
     return parseResponse(response);
 }
 
+
+// APIS pra pegar historico das planilhas
+export async function HistoricoPlanilhas() {
+    const response = await fetch (`${API_BASE}/api/planilhas`, {
+        method: "GET",
+        headers: headers,
+    })
+
+    return parseResponse(response);
+}
+
+// APIS
 export async function upload(planilha){
     const form = new FormData();
     form.append("file", planilha)
