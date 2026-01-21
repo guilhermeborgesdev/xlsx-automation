@@ -28,10 +28,10 @@ async function iniciaGrid(){
                 Edicoes: ''
             })
         });
-        gridUsuarios.setGridOption("rowData", lista)
+        gridUsuarios.setGridOption("rowData", lista);
     }
     catch(e){
-        console.log('erro ao carregar usuarios' + e)
+        console.log('erro ao carregar usuarios' + e);
     }
 }
 
@@ -43,15 +43,17 @@ if (document.readyState === 'loading') {
 
 const add_dialog = document.getElementById("adicionar_usuarios");
 if(add_dialog !== null){
-    add_dialog.addEventListener("click", () => utils.abrirModalFormulario("modal_Add_Usuario", "novoUsuario"))
+    const dados_linha = [];
+    add_dialog.addEventListener("click", () => utils.abrirModalFormulario("modal_Add_Usuario", "novoUsuario", dados_linha));
 }
 
 const fecha_dialog_add_edt = document.getElementById("cancelar");
 if(fecha_dialog_add_edt !== null){
-    fecha_dialog_add_edt.addEventListener("click", () => utils.fecharModal("modal_Add_Usuario"))
+    fecha_dialog_add_edt.addEventListener("click", () => utils.fecharModal("modal_Add_Usuario"));
 }
 
 const editar_usuario = document.getElementById("editar_usuarios");
 if (editar_usuario !== null){
-    editar_usuario.addEventListener("click", () => utils.abrirModalFormulario("modal_Add_Usuario", "novoUsuario"))
+    editar_usuario.addEventListener("click", () => utils.abrirModalFormularioEdicao("modal_Add_Usuario", "novoUsuario"));
 }
+
