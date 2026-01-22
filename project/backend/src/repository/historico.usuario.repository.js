@@ -13,7 +13,7 @@
         }      
         
         const result = await db.request().query(
-            `select * from HS_HISTORICO ` + aplicafiltro(filtro)
+            `select * from HS_HISTORICO ` + aplicafiltro(filtro) || ''
         );
 
         return result.recordset;

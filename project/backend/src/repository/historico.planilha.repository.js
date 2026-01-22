@@ -4,10 +4,6 @@ import sql from "mssql";
 export async function HistoricoPlanilhas() {
     const db = await connectDB ();
 
-<<<<<<< Updated upstream
-        const result = await db.request().query(
-            `select * from HP_HISTORICO_PLANILHAS`
-=======
     const result = await db.request().query(
         `SELECT
         US_CODIGO        AS UsuarioCodigo,
@@ -37,7 +33,6 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
         HP_LOCALPLANILHA,
         HP_STATUS,
         HP_ERROR
->>>>>>> Stashed changes
         )
         output inserted.HP_CODIGO
         values(

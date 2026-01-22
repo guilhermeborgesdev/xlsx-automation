@@ -4,6 +4,7 @@ import { connectDB } from "./src/database/connection.js";
 import express from "express";
 import usuarioRoutes from "./src/routes/user/route.usuario.js";
 import historicoRoutes from "./src/routes/history/route.historico.js";
+import planilhasRoutes from "./src/routes/history/route.history.planilha.js";
 import authRoutes from "./src/routes/auth/route.auth.js";   
 import cors from "cors";
 
@@ -22,7 +23,8 @@ app.use(cors({
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usuarioRoutes);
 app.use("/api/history", historicoRoutes);
-
+app.use("/api/planilhas", planilhasRoutes)
+    
 app.use((err, req, res, next) => {
     if (err?.message === "Usuário não encontrado") {
         return res.status(404).json({ error: err.message });
