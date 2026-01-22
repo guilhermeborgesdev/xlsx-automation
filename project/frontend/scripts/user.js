@@ -3,12 +3,15 @@ import * as utils from "./utils.js"
 
 const gridOptions = {
     theme: agGrid.themeQuartz,
+    defaultColDef: {
+        cellStyle: { display: 'flex', 'justify-content': 'left' }
+    },
     rowData: [],
     columnDefs: [
-        {field: 'Nome'},
-        {field: 'Login'},
-        {field: 'Permissao'},
-        {field: 'Edicoes'}
+        {field: 'Nome', width: 450},
+        {field: 'Login', width: 450},
+        {field: 'Permissao', width: 100 },
+        {field: 'Edicoes', width: 600}
     ]
 }
 
