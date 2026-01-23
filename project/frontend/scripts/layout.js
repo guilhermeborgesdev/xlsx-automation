@@ -1,4 +1,4 @@
-import * as sessao from "./session.js";
+import * as api from "./api.js"
 
 const views = {
     main: {
@@ -22,7 +22,7 @@ const views = {
 };
 
 //adiciona o nome do usuario e permissao
-const dados_usuarios = sessao.getSessaoUsuario();
+const dados_usuarios = await api.GetDadosLogin();
 const nome_usuario = dados_usuarios.nome
 document.getElementById('loginUsuario').innerHTML = nome_usuario
 
