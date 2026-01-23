@@ -15,8 +15,8 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:codigo", async (req, res, next) => {
     try {
-        const user = await spreadsheet.HistoricoUsuario(req.params.codigo);
-        res.status(200).json({user})
+        const historicoUser = await spreadsheet.HistoricoPlanilhasindividual(req.params.codigo);
+        res.status(200).json({historicoUser})
     } catch (error) {
         next(error)
     }
