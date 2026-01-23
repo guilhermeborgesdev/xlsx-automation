@@ -24,6 +24,7 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
     
     const result = await db.request().input("codigousuario", sql.Int, dados_hitorico_planilha.usuario).
     input("nome_planilha", sql.VarChar(255), dados_hitorico_planilha.planilha).
+    input("local_planilha", sql.Varchar(100), dados_hitorico_planilha.local_planilha)
     input("status", sql.VarChar(100), dados_hitorico_planilha.status).
     input("error", sql.VarChar(500), dados_hitorico_planilha.error).
     query(
@@ -37,6 +38,7 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
         output inserted.HP_CODIGO
         values(
         @codigousuario,
+        @local_planilha,
         @nome_planilha,
         @status,
         @error
