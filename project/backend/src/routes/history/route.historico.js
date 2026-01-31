@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:codigo", async (req, res, next) => {
     try {
         const users = await user.HistoricoUsuario(req.params.codigo);
-        res.status(200).json({user})
+        res.status(200).json({users})
     } catch (error) {
         next(error)
     }

@@ -3,10 +3,15 @@ import * as session from "./session.js"
 
 const dashboard_geral = document.getElementById("dash_geral");
 const dashboard_individual = document.getElementById("dash_individual");
+const codigo_usuario = await api.GetDadosLogin();
 
 try{
     const dados_dash_geral = await api.HistoricoPlanilhas();
 
+    const historicoGeral = dados_dash_geral.history;
+    var labels = historicoGeral.map(i => i.UsuarioNome);
+    var TotalPlanilhas = historicoGeral.map(i => i.TotalPlanilhas);
+    
     new Chart(dashboard_geral, {
         type: "bar",
         data: {
@@ -24,7 +29,7 @@ try{
         }
     })
 } catch (e){
-    console.log('erro ao carregar usuarios' + e);
+    console.log ('erro ao carregar usuarios' + e);
 }
 
 try {

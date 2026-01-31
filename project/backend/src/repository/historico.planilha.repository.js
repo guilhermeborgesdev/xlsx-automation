@@ -5,14 +5,14 @@ export async function HistoricoPlanilhas() {
     const db = await connectDB ();
 
     const result = await db.request().query(
-        `SELECT
+        `select
         US_CODIGO        as UsuarioCodigo,
         US_NOME          as UsuarioNome,
-        count(*)         as TotalPlanilhas
+        COUNT(*)         as TotalPlanilhas
         from HP_HISTORICO_PLANILHAS 
         join US_USUARIOS ON US_CODIGO = HP_USCODIGO
         group by US_CODIGO, US_NOME
-        order by TotalPlanilhas desc;
+        order by TotalPlanilhas DESC;
         `
     );
 
