@@ -19,26 +19,22 @@ export async function HistoricoPlanilhas() {
     return result.recordset;
 }   
 
-export async function HistoricoPlanilhasindividual(usuario) {
-    const db = await connectDB ();
+export async function HistoricoPlanilhasUsuarios(id) {
+    const db = await connectDB();
 
-    const result = await db.request().input("codigo_usuario", sql.Int, usuario).query(
-        `select
-        US_CODIGO        as CodigoUsuario,
+    const result = await db.request().input("id", sql.Int, id).query(
+        `select 
+        US_CODIGO        as UsuarioCodigo,
         US_NOME          as UsuarioNome,
-        HS_DATA_UPLOAD   as DataPlanilha,
-        COUNT(*)         as TotalPlanilhas
+        count(*)         as TotalPlanilhas
         from HP_HISTORICO_PLANILHAS 
         join US_USUARIOS ON US_CODIGO = HP_USCODIGO
-        where US_CODIGO = @codigo_usuario
-        group by US_CODIGO, US_NOME, HS_DATA_UPLOAD
-        order by HS_DATA_UPLOAD DESC;
+        where US_CODIGO = @id
+        group by US_CODIGO, US_NOME
+        order by TotalPlanilhas desc;
         `
-    );
-
-    return result.recordset;
-}   
-
+    )
+}
 
 export async function registrarHistoricoHP(dados_hitorico_planilha){
     const db = await connectDB();

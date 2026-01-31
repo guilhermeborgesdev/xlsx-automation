@@ -1,3 +1,5 @@
+import * as sessao from "./session.js";
+
 const API_BASE = "http://localhost:3000"; // a porta do Express
 const headers = { "Content-Type": "application/json" }
 
@@ -17,6 +19,12 @@ async function parseResponse(response) {
     return result;
 }
 
+export async function GetDadosLogin(){
+    const dados_usuarios = sessao.getSessaoUsuario();
+
+    return dados_usuarios;
+}
+
 // API login usuario
 export async function login(dados) {
     const response = await fetch(`${API_BASE}/api/auth`, {
@@ -33,7 +41,7 @@ export async function login(dados) {
 export async function getUsuarios(){
     const response = await fetch (`${API_BASE}/api/users`, {
         method: "GET",
-        headers: headers,
+        headers: headers
     });
 
     return parseResponse(response);
@@ -43,7 +51,7 @@ export async function getUsuarios(){
 export async function getHistorico(){
     const response = await fetch (`${API_BASE}/api/history`, {
         method: "GET",
-        headers: headers,
+        headers: headers
     })
 
     return parseResponse(response);
@@ -53,7 +61,7 @@ export async function getHistorico(){
 export async function getHistoricoUsuario(idUser){
     const response = await fetch (`${API_BASE}/api/history/${idUser}`, {
         method: "GET",
-        headers: headers,
+        headers: headers
     })
 
     return parseResponse(response);
@@ -63,7 +71,7 @@ export async function getHistoricoUsuario(idUser){
 export async function getUsusario(idUser){
     const response = await fetch (`${API_BASE}/api/users/${idUser}`, {
         method: "GET",
-        headers: headers,
+        headers: headers
     });
 
     return parseResponse(response);
@@ -73,6 +81,24 @@ export async function getUsusario(idUser){
 // APIS pra pegar historico das planilhas
 export async function HistoricoPlanilhas() {
     const response = await fetch (`${API_BASE}/api/planilhas`, {
+        method: "GET",
+        headers: headers
+    })
+
+    return parseResponse(response);
+}
+
+export async function HistoricoPlanilhasUsuarios(id) {
+    const response = await fetch (`${API_BASE}/api/planilhas/${id}`, {
+        method: "GET",
+        headers: headers
+    })
+
+    return parseResponse(response);
+}
+
+export async function HistoricoPlanilhasindividual(cod_usuario){
+    const response = await fetch (`${API_BASE}/api/planilhas/${cod_usuario}`, {
         method: "GET",
         headers: headers,
     })
@@ -106,7 +132,7 @@ export async function work(planilhaId){
 export async function resultWork(idwork){
     const response = await fetch (`${API_BASE}/api/result/${idwork}`, {
         method: "GET",
-        headers: headers,
+        headers: headers
     });
 
     return parseResponse(response);
