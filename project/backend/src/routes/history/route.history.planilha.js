@@ -15,8 +15,8 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:codigo", async (req, res, next) => {
     try {
-        const user = await planilha.HistoricoPlanilhasUsuarios(req.params.codigo);
-        res.status(200).json({user})
+        const history = await planilha.HistoricoPlanilhasUsuarios(req.params.codigo);
+        res.status(200).json({history})
     } catch (error) {
         next(error)
     }
