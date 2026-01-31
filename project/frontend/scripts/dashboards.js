@@ -1,4 +1,5 @@
 import * as api from "./api.js"
+import * as session from "./session.js"
 
 const dashboard_geral = document.getElementById("dash_geral");
 const dashboard_individual = document.getElementById("dash_individual");
@@ -23,5 +24,29 @@ try{
         }
     })
 } catch (e){
+    console.log('erro ao carregar usuarios' + e);
+}
+
+try {
+    const id = session.getSessaoUsuario().codigo;
+    const dados_dash_individual = await api.HistoricoPlanilhasUsuarios(id);
+
+    new Chart(dashboard_individual, {
+        type: "bar",
+        data: {
+            labels: dados_dash_individual.Planilha,
+            datasets: {
+                labels: "Suas Edições",
+                data: dados_dash_individual.Data_Planilhas,
+                backgroundColor: 'rgb(255, 255, 255)',
+                borderColor: 'rgb(11, 35, 255)',
+                borderWidth: 1
+            }        
+        },
+        options: {
+            scales: { y: { beginAtZero: true}}
+        }
+    })
+} catch (e) {
     console.log('erro ao carregar usuarios' + e);
 }
