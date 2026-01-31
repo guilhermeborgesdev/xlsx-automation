@@ -55,14 +55,14 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
         output inserted.HP_CODIGO
         values(
         @codigousuario,
-        @local_planilha,
         @nome_planilha,
+        @local_planilha,
         @status,
         @error
         )`
     );
 
-    return result.rowsAffected[0].HS_SH_CODIGO;
+    return result.rowsAffected.HP_CODIGO;
 }
 
 export async function updtHistoricoPlanilha(codigo, dados_hitorico_planilha){

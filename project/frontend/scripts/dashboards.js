@@ -8,25 +8,30 @@ try{
     const dados_dash_geral = await api.HistoricoPlanilhas();
 
     const historico = dados_dash_geral.history;
-    var labels = historico.map(i => i.UsuarioNome);
-    var TotalPlanilhas = historico.map(i => i.TotalPlanilhas);
-    
-    new Chart(dashboard_geral, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Planilhas Editadas",
-                data: TotalPlanilhas,
-                backgroundColor: 'rgb(0, 38, 255)',
-                borderColor: 'rgb(11, 35, 255)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: { y: { beginAtZero: true }}
-        }
-    })
+
+    if (historico) {
+        var labels = historico.map(i => i.UsuarioNome);
+        var TotalPlanilhas = historico.map(i => i.TotalPlanilhas);
+        
+        new Chart(dashboard_geral, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Planilhas Editadas',
+                    data: TotalPlanilhas,
+                    backgroundColor: 'rgb(0, 38, 255)',
+                    borderColor: 'rgb(11, 35, 255)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true }}
+            }
+        })
+    } else {
+        document.getElementById('dash_msg_geral').innerHTML = '<p><strong>NENHUMA PLANILHA EDITADA</strong></p>';
+    }
 } catch (e){
     console.log ('erro ao carregar usuarios' + e);
 }
@@ -34,22 +39,29 @@ try{
 try {
     const dados_dash_individual = await api.HistoricoPlanilhasUsuarios(sessao.codigo);
 
-    new Chart(dashboard_individual, {
-        type: "bar",
-        data: {
-            labels: dados_dash_individual.Planilha,
-            datasets: {
-                labels: "Suas Edições",
-                data: dados_dash_individual.Data_Planilhas,
-                backgroundColor: 'rgb(255, 255, 255)',
-                borderColor: 'rgb(11, 35, 255)',
-                borderWidth: 1
-            }        
-        },
-        options: {
-            scales: { y: { beginAtZero: true}}
-        }
-    })
-} catch (e) {
+    const historico = dados_dash_individual.history;
+    if (historico){
+        var TotalPlanilhas = historico.map(i => i.TotalPlanilhas);
+
+        new Chart(dashboard_individual, {
+            type: 'bar',
+            data: {
+                labels: ['Suas Edições'],
+                datasets: [{
+                    labels: '',
+                    data: TotalPlanilhas,
+                    backgroundColor: 'rgb(255, 255, 255)',
+                    borderColor: 'rgb(11, 35, 255)',
+                    borderWidth: 1
+                }]      
+            },
+            options: {
+                scales: { y: { beginAtZero: true}}
+            }
+        })
+    } else {
+        document.getElementById('dash_msg_indivudal').innerHTML = '<p><strong>NENHUMA PLANILHA EDITADA</strong></p>';
+    }
+} catch (e) {   
     console.log('erro ao carregar usuarios' + e);
 }
