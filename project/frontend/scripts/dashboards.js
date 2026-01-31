@@ -1,7 +1,9 @@
 import * as api from "./api.js"
+import * as session from "./session.js"
 
 const dashboard_geral = document.getElementById("dash_geral");
 const dashboard_individual = document.getElementById("dash_individual");
+const codigo_usuario = await api.GetDadosLogin();
 
 try{
     const dados_dash_geral = await api.HistoricoPlanilhas();

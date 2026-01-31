@@ -5,19 +5,36 @@ export async function HistoricoPlanilhas() {
     const db = await connectDB ();
 
     const result = await db.request().query(
-        `SELECT
-        US_CODIGO        AS UsuarioCodigo,
-        US_NOME          AS UsuarioNome,
-        COUNT(*)         AS TotalPlanilhas
-        FROM HP_HISTORICO_PLANILHAS 
-        JOIN US_USUARIOS ON US_CODIGO = HP_USCODIGO
-        GROUP BY US_CODIGO, US_NOME
-        ORDER BY TotalPlanilhas DESC;
+        `select
+        US_CODIGO        as UsuarioCodigo,
+        US_NOME          as UsuarioNome,
+        COUNT(*)         as TotalPlanilhas
+        from HP_HISTORICO_PLANILHAS 
+        join US_USUARIOS ON US_CODIGO = HP_USCODIGO
+        group by US_CODIGO, US_NOME
+        order by TotalPlanilhas DESC;
         `
     );
 
     return result.recordset;
 }   
+
+export async function HistoricoPlanilhasUsuarios(id) {
+    const db = await connectDB();
+
+    const result = await db.request().input("id", sql.Int, id).query(
+        `select 
+        US_CODIGO        as UsuarioCodigo,
+        US_NOME          as UsuarioNome,
+        count(*)         as TotalPlanilhas
+        from HP_HISTORICO_PLANILHAS 
+        join US_USUARIOS ON US_CODIGO = HP_USCODIGO
+        where US_CODIGO = @id
+        group by US_CODIGO, US_NOME
+        order by TotalPlanilhas desc;
+        `
+    )
+}
 
 export async function registrarHistoricoHP(dados_hitorico_planilha){
     const db = await connectDB();
