@@ -1,3 +1,5 @@
+import * as sessao from "./session.js";
+
 const API_BASE = "http://localhost:3000"; // a porta do Express
 const headers = { "Content-Type": "application/json" }
 
@@ -15,6 +17,12 @@ async function parseResponse(response) {
     }
 
     return result;
+}
+
+export async function GetDadosLogin(){
+    const dados_usuarios = sessao.getSessaoUsuario();
+
+    return dados_usuarios;
 }
 
 // API login usuario
@@ -84,6 +92,15 @@ export async function HistoricoPlanilhasUsuarios(id) {
     const response = await fetch (`${API_BASE}/api/planilhas/${id}`, {
         method: "GET",
         headers: headers
+    })
+
+    return parseResponse(response);
+}
+
+export async function HistoricoPlanilhasindividual(cod_usuario){
+    const response = await fetch (`${API_BASE}/api/planilhas/${cod_usuario}`, {
+        method: "GET",
+        headers: headers,
     })
 
     return parseResponse(response);
