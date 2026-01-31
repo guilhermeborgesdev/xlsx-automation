@@ -97,15 +97,6 @@ export async function HistoricoPlanilhasUsuarios(id) {
     return parseResponse(response);
 }
 
-export async function HistoricoPlanilhasindividual(cod_usuario){
-    const response = await fetch (`${API_BASE}/api/planilhas/${cod_usuario}`, {
-        method: "GET",
-        headers: headers,
-    })
-
-    return parseResponse(response);
-}
-
 // APIS
 export async function upload(planilha){
     const form = new FormData();
