@@ -1,5 +1,7 @@
 import * as api from "./api.js"
 
+//aqui é onde fica as telas do sistema
+//definie o titulo, o caminho do html, o caminho do js, e se é um modulo
 const views = {
     main: {
         title: "Inicio",
@@ -26,8 +28,10 @@ const dados_usuarios = await api.GetDadosLogin();
 const nome_usuario = dados_usuarios.nome
 document.getElementById('loginUsuario').innerHTML = nome_usuario
 
+//aqui vai ter operador ternario, se o usuario tiver permissao A entao é admin, se não é padrão
 const permissao = dados_usuarios.permissao ;
 permissao == 'A' ? document.getElementById('permissaoUsuario').innerHTML = 'Administrador' : document.getElementById('permissaoUsuario').innerHTML = 'Padrão';
+//se o usuário não for adinistrador ele não tem acesso a tela, e esse style display retira as telas de dash e usuarios
 if (permissao !== 'A') { 
     document.getElementById('dashboards').style.display = 'none'
     document.getElementById('user').style.display = 'none'

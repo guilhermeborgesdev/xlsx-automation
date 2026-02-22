@@ -2,8 +2,9 @@ import { connectDB } from "../database/connection.js";
 import sql from "mssql";
 
 export async function HistoricoPlanilhas() {
+    //inicia a conexao
     const db = await connectDB ();
-
+    //aqui vai buscar todo o hisotrico de planilhas
     const result = await db.request().query(
         `select
         US_CODIGO        as UsuarioCodigo,
@@ -20,9 +21,12 @@ export async function HistoricoPlanilhas() {
 }   
 
 export async function HistoricoPlanilhasUsuarios(id) {
+    //inicia conexao com o banco
     const db = await connectDB();
-
-    const result = await db.request().input("id", sql.Int, id).query(
+    //aqui vai buscar hisotrico de um usuario especifico
+    const result = await db.request().
+    //aqui vai passar o id do usuario recebido
+    input("id", sql.Int, id).query(
         `select 
         US_CODIGO        as UsuarioCodigo,
         US_NOME          as UsuarioNome,
@@ -36,9 +40,11 @@ export async function HistoricoPlanilhasUsuarios(id) {
     )
 }
 
+//essa funcao é chamada pra adicioanr um registro no hisotrico de planilhas 
 export async function registrarHistoricoHP(dados_hitorico_planilha){
+    //inicia conexao com o banco
     const db = await connectDB();
-    
+    //aqui vai passar os dados pra inserir no banco
     const result = await db.request().input("codigousuario", sql.Int, dados_hitorico_planilha.usuario).
     input("nome_planilha", sql.VarChar(255), dados_hitorico_planilha.planilha).
     input("local_planilha", sql.Varchar(100), dados_hitorico_planilha.local_planilha)
@@ -53,7 +59,7 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
         HP_ERROR
         )
         output inserted.HP_CODIGO
-        values(
+        values(     
         @codigousuario,
         @nome_planilha,
         @local_planilha,
@@ -61,25 +67,8 @@ export async function registrarHistoricoHP(dados_hitorico_planilha){
         @error
         )`
     );
-
+    //aqui vai retornar somente o HP_CODIGO por conta do output inserted.HP_CODIGO
     return result.rowsAffected.HP_CODIGO;
 }
 
-export async function updtHistoricoPlanilha(codigo, dados_hitorico_planilha){
-    const db = await connectDB();
-
-    const result = await db.request().input("codigo", sql.Int, codigo).
-    input("status", sql.VarChar(100), dados_hitorico_planilha.status).
-    input("error", sql.VarChar(500), dados_hitorico_planilha.error).
-    query(
-        `update US_HISTORICO_PLANILHAS
-        set HP_STATUS = @status,
-        HP_ERROR = @error,
-        HS_DATA_UPLOAD = GETDATE()
-        where HP_CODIGO = @codigo`
-    );
-
-    if (result.rowsAffected[0] == 0) {throw new Error ("Histórico de planilha não encontrado")}
-    return result.rowsAffected[0];
-}
 // Precisa criar procedura pra exclusao de historico de planilhas antigas
