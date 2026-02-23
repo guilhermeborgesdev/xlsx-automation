@@ -1,7 +1,9 @@
 import { connectDB } from "../database/connection.js";
 import sql from "mssql";
 
+//aqui busca os dados de todos os usuarios
 export async function getUsuarios() {
+    //inica conexao com o banco
     const db = await connectDB();
 
     const result = await db.request().query(
@@ -17,9 +19,11 @@ export async function getUsuarios() {
     return result.recordset;
 }
 
+//essa funcao busca todos os dados de um usuario especifico
 export async function getUsusario(codigo) {
+    //inicia conexao com o banco
     const db = await connectDB();
-
+    //passa o codigo do usuario recebido
     const result = await db.request().input("codigo", sql.Int, codigo).query(
         `select
         *
@@ -32,9 +36,11 @@ export async function getUsusario(codigo) {
     return result.recordset;
 }
 
+//aqui atualiza as informacoes de um usuario
 export async function updtUsusario(codigo, dados_usuario){
+    //inica conexao com o banco
     const db = await connectDB();
-
+    //atualiza o nome, senha, login e permissao
     const result = await db.request().input("codigo", sql.Int, codigo).
     input("nome", sql.VarChar(100), dados_usuario.nome).
     input("login", sql.VarChar(14), dados_usuario.login).
@@ -51,9 +57,11 @@ export async function updtUsusario(codigo, dados_usuario){
     return result.rowsAffected[0];
 };
 
+//essa funcao deleta um usuario
 export async function deleteUsusario(codigo){
+    //inicia conexao com o banco
     const db = await connectDB();
-
+    //deleta atraves do codigo recebido
     const result = await db.request().input("codigo", sql.Int, codigo).
     query(
         `delete from US_USUARIOS
@@ -64,9 +72,11 @@ export async function deleteUsusario(codigo){
     return result.rowsAffected[0];
 };
 
+//essa fucnao insere usuarios
 export async function insertUsuario(dados_usuario) {
+    //inicia conexao com o banco
     const db = await connectDB();
-
+    //insere passando as informacoes do formulario do front
     const result = await db.request().
     input("nome", sql.VarChar(100), dados_usuario.nome).
     input("login", sql.Char(11), dados_usuario.login).
@@ -85,6 +95,6 @@ export async function insertUsuario(dados_usuario) {
         @senha, 
         @permissao)
     `); 
-
+    //retorna o codigo do novo usuario inserido por conta do output inserted.US_CODIGO
     return result.rowsAffected[0].US_CODIGO;
 }

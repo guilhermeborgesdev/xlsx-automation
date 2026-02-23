@@ -1,5 +1,7 @@
+//aqui importa a bibliotea que faz conexao com o SQL Server
 import sql from "mssql";
 
+//aqui define a configuracao da conexao com o banco, (o certo é pegar do .env, mas nao esta configurado ainda)
 const config = {
   user: "sa",
   password: "7053#Gui",
@@ -18,6 +20,7 @@ const config = {
   },
 };
 
+//aqui realiza a conexao com o banco passando as informacoes de acesso
 export async function connectDB() {
   try {
     const pool = await sql.connect(config);

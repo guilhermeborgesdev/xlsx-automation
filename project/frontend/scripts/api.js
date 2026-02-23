@@ -19,13 +19,14 @@ async function parseResponse(response) {
     return result;
 }
 
+//busca os dados de sessao do usuario
 export async function GetDadosLogin(){
     const dados_usuarios = sessao.getSessaoUsuario();
 
     return dados_usuarios;
 }
 
-// API login usuario
+// API de login do usuario que realiza a autenticacao
 export async function login(dados) {
     const response = await fetch(`${API_BASE}/api/auth`, {
         method: "POST",
@@ -36,38 +37,7 @@ export async function login(dados) {
     return parseResponse(response);
 }
 
-
-// APIS pra pegar dados dos usuários
-export async function getUsuarios(){
-    const response = await fetch (`${API_BASE}/api/users`, {
-        method: "GET",
-        headers: headers
-    });
-
-    return parseResponse(response);
-}
-
-//Pega o historico de todos os usuarios
-export async function getHistorico(){
-    const response = await fetch (`${API_BASE}/api/history`, {
-        method: "GET",
-        headers: headers
-    })
-
-    return parseResponse(response);
-}
-
-// pega o historico de usuarios especificos
-export async function getHistoricoUsuario(idUser){
-    const response = await fetch (`${API_BASE}/api/history/${idUser}`, {
-        method: "GET",
-        headers: headers
-    })
-
-    return parseResponse(response);
-}
-
-// Pega dados de um usuario especifico
+//API Pega dados de um usuario especifico
 export async function getUsusario(idUser){
     const response = await fetch (`${API_BASE}/api/users/${idUser}`, {
         method: "GET",
@@ -77,8 +47,37 @@ export async function getUsusario(idUser){
     return parseResponse(response);
 }
 
+// API pra pegar a lista de usuários existentes
+export async function getUsuarios(){
+    const response = await fetch (`${API_BASE}/api/users`, {
+        method: "GET",
+        headers: headers
+    });
 
-// APIS pra pegar historico das planilhas
+    return parseResponse(response);
+}
+
+//API que pega o historico de todos os usuarios existentes
+export async function getHistorico(){
+    const response = await fetch (`${API_BASE}/api/history`, {
+        method: "GET",
+        headers: headers
+    })
+
+    return parseResponse(response);
+}
+
+//API que pega o historico de algum usuario especifico
+export async function getHistoricoUsuario(idUser){
+    const response = await fetch (`${API_BASE}/api/history/${idUser}`, {
+        method: "GET",
+        headers: headers
+    })
+
+    return parseResponse(response);
+}
+
+// API pra pegar historico das planilhas de todos os usuarios
 export async function HistoricoPlanilhas() {
     const response = await fetch (`${API_BASE}/api/planilhas`, {
         method: "GET",
@@ -88,6 +87,7 @@ export async function HistoricoPlanilhas() {
     return parseResponse(response);
 }
 
+//API que pega o historico de planilhas de um usuario especifico
 export async function HistoricoPlanilhasUsuarios(id) {
     const response = await fetch (`${API_BASE}/api/planilhas/${id}`, {
         method: "GET",
@@ -97,7 +97,7 @@ export async function HistoricoPlanilhasUsuarios(id) {
     return parseResponse(response);
 }
 
-// APIS
+// APIS que ainda nao foram configuradas
 export async function upload(planilha){
     const form = new FormData();
     form.append("file", planilha)
