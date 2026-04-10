@@ -1,8 +1,12 @@
 import * as api from "./api.js"
 import * as utils from "./utils.js"
 
+let gridUsuarios = null;
 //aqui monta a grid dos usuarios do AgGrid
 const gridOptions = {
+    rowSelection: {
+        mode: 'singleRow'
+    },
     theme: agGrid.themeQuartz,
     defaultColDef: {
         cellStyle: { display: 'flex', 'justify-content': 'left' }
@@ -19,26 +23,25 @@ const gridOptions = {
 //aqui ele vai iniciar a grid
 async function iniciaGrid(){
     const gridElement = document.getElementById("lista_usuarios");
-    const gridUsuarios = agGrid.createGrid(gridElement, gridOptions);
+    gridUsuarios = agGrid.createGrid(gridElement, gridOptions);
 
     try{
         //aqui vai pegar os usuarios 
         const usuarios = await api.getUsuarios();
-        const lista = [];
-
-        usuarios.users.forEach(item => {
-            lista.push ({
+        const lista = usuarios.users.map(item => ({
                 Nome: item.NOME,
                 Login: item.LOGIN,
+                Senha: item.SENHA,
                 Permissao: item.PERMISSAO,
                 Edicoes: ''
-            })
-        });
+        }));
         gridUsuarios.setGridOption("rowData", lista);
     }
     catch(e){
         console.log('erro ao carregar usuarios' + e);
     }
+
+    gridUsuarios.setGridOption('rowData', lista)
 }
 
 if (document.readyState === 'loading') {
@@ -65,6 +68,10 @@ if(fecha_dialog_add_edt !== null){
 const editar_usuario = document.getElementById("editar_usuarios");
 if (editar_usuario !== null){
     //se exisir ele vai colocar o evento de click e chamar a funcao que abre o dialgo de edicao de usuarios
-    editar_usuario.addEventListener("click", () => utils.abrirModalFormularioEdicao("modal_Add_Usuario", "novoUsuario"));
+    editar_usuario.addEventListener("click", () => {
+        const selecao = gridUsuarios.getSelectedRows();
+        const dados = selecao[0];
+        utils.abrirModalFormularioEdicao("modal_Add_Usuario", "novoUsuario", dados);
+    })
 }
 

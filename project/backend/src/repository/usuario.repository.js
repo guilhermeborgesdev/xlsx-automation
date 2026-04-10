@@ -10,6 +10,7 @@ export async function getUsuarios() {
         `select top 15  
         US_CODIGO as CODIGO,
         US_NOME as NOME,
+        US_SENHA as SENHA,
         US_LOGIN as LOGIN,
         US_PERMISSAO as PERMISSAO
         from US_USUARIOS
