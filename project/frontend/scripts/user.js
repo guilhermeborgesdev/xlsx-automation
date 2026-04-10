@@ -9,9 +9,10 @@ const gridOptions = {
     },
     rowData: [],
     columnDefs: [
-        {field: 'Nome', width: 450},
-        {field: 'Login', width: 450},
+        {field: 'Nome', width: 400},
+        {field: 'Login', width: 430},
         {field: 'Permissao', width: 100 },
+        {field: 'Senha', widht: 0, hide: 'true'},
         {field: 'Edicoes', width: 600}
     ]
 }
