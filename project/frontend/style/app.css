@@ -64,6 +64,10 @@ p {
     margin: 0;
 }
 
+#sair_sistema {
+    margin-left: 20px;
+}
+
 #dados_login {
     grid-area: top;
     display: flex;

@@ -1,10 +1,11 @@
 import * as api from "./api.js"
+import * as utils from "./utils.js"
 
 //aqui é onde fica as telas do sistema
 //definie o titulo, o caminho do html, o caminho do js, e se é um modulo
 const views = {
     main: {
-        title: "Inicio",
+        title: "Início",
         fragment: "../pages/main.html",
         script: "../scripts/main.js",
         module: true,
@@ -16,7 +17,7 @@ const views = {
         module: true,
     },
     user: {
-        title: "Usuarios",
+        title: "Usuários",
         fragment: "../pages/user.html",
         script: "../scripts/user.js",
         module: true,
@@ -28,6 +29,8 @@ const dados_usuarios = await api.GetDadosLogin();
 const nome_usuario = dados_usuarios.nome
 document.getElementById('loginUsuario').innerHTML = nome_usuario
 
+const botao_sair = document.getElementById('sair_sistema');
+botao_sair.addEventListener('click', utils.sair_sistema)
 //aqui vai ter operador ternario, se o usuario tiver permissao A entao é admin, se não é padrão
 const permissao = dados_usuarios.permissao ;
 permissao == 'A' ? document.getElementById('permissaoUsuario').innerHTML = 'Administrador' : document.getElementById('permissaoUsuario').innerHTML = 'Padrão';
