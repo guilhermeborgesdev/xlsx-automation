@@ -1,4 +1,5 @@
-import * as functionsApi from "./api.js"
+import * as functionsApi from "./api.js";
+import * as session from "./session.js";
 
 //aqui ele monta a funcao que vai abrir o dialog dos usuario
 export async function abrirModalFormulario(elemento, formulario) {
@@ -30,7 +31,7 @@ export async function abrirModalFormularioEdicao(elemento, formulario, dados) {
         formulario_elemento.elements['senha'].value = dados.Senha
         formulario_elemento.elements['permissao'].value = dados.Permissao
     } catch (e) {
-
+        retornaMensagem('Erro', formulario_elemento, e)
     }
 
     const tela = document.getElementById(elemento);
@@ -42,4 +43,16 @@ export async function abrirModalFormularioEdicao(elemento, formulario, dados) {
 export function fecharModal(elemento) {
     const tela = document.getElementById(elemento)
     tela.classList.add("hidden");
+}
+
+//essa mensagem retorna erro ou algum bloqueio pro usuario
+export function retornaMensagem(TipoMensagem, nome_tela, mensagem){
+    var nome_da_tela = nome_tela
+
+// precisa criar a mensagem de erro e os tipos
+}
+
+export function sair_sistema(){
+    session.logout();
+    window.location.href="../index.html";
 }
