@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //aqui libera a politica de cors
 app.use(cors({
-  origin: ["http://0.0.0.0:5500", "http://localhost:5500"],
+  origin: ["http://0.0.0.0:5500", "http://localhost:5500", "http://127.0.0.1:5500"],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true

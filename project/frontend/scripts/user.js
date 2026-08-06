@@ -75,3 +75,11 @@ if (editar_usuario !== null){
     })
 }
 
+const delete_user = document.getElementById("delete_user");
+if (delete_user !== null) {
+    //se estiver selecionado um usuario vai abrir um dialog de confirmacao pedindo se confirma a exclusao
+    abre_dialog_confirmacao('user', 'deletar');
+}  else {
+    abre_dialog_mensagem('user', 'Selecione um usuário pra Excluir.')
+}
+

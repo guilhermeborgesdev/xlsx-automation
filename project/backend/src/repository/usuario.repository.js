@@ -45,7 +45,7 @@ export async function updtUsusario(codigo, dados_usuario){
     const result = await db.request().input("codigo", sql.Int, codigo).
     input("nome", sql.VarChar(100), dados_usuario.nome).
     input("login", sql.VarChar(14), dados_usuario.login).
-    input("permissao", sql.Int, dados_usuario.permissao).
+    input("permissao", sql.Char(1), dados_usuario.permissao).
     query(
         `update US_USUARIOS
         set US_NOME = @nome,
@@ -82,7 +82,7 @@ export async function insertUsuario(dados_usuario) {
     input("nome", sql.VarChar(100), dados_usuario.nome).
     input("login", sql.Char(11), dados_usuario.login).
     input("senha", sql.VarChar(500), dados_usuario.senha).
-    input("permissao", sql.Int, dados_usuario.permissao).
+    input("permissao", sql.Char(1), dados_usuario.permissao).
     query(
         `insert into US_USUARIOS (
         US_NOME, 
