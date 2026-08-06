@@ -46,7 +46,7 @@ export function fecharModal(elemento) {
 }
 
 //essa mensagem retorna erro ou algum bloqueio pro usuario
-export function retornaMensagem(TipoMensagem, nome_tela, mensagem){
+export function retornaMensagem(nome_tela, mensagem){
     var nome_da_tela = nome_tela
 
 // precisa criar a mensagem de erro e os tipos
@@ -55,4 +55,20 @@ export function retornaMensagem(TipoMensagem, nome_tela, mensagem){
 export function sair_sistema(){
     session.logout();
     window.location.href="../index.html";
+}
+
+export function abre_dialog_confirmacao(tela, acao) {
+    if (tela = 'user') {
+        if (acao = 'deleter') {
+            
+        } else if (acao = 'editar') {
+            
+        } else if (acao = 'adicionar') {
+            
+        }
+    } else if (tela = 'layout'){
+        if (acao = 'sair'){
+            
+        }
+    }
 }

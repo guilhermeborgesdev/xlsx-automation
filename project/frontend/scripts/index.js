@@ -19,11 +19,13 @@ async function login(){
 
     //verificar se nâo possuir dados ele informa dizendo que precisa de login pra entrar
     if(!dados_login){
+        if (document.querySelector(".mensagem")){
+            return;
+        }
         var mensagem = document.createElement("div");
         mensagem.className="mensagem";
-        mensagem.textContent = "Informe seu login e senha para Entrar!"
+        mensagem.textContent = "Informe seu login e senha corretos para Entrar!"
         container.appendChild(mensagem); 
-        
         return;
     }
     
